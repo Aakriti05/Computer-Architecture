@@ -23,11 +23,11 @@ always@(posedge clk)
 	end
 endmodule
 
-module data_mem_16kB(dout,clk,rb,wb,adrb);
+module data_mem_16kB(dout,clk,rb,wb,din,adrb);
 
+output reg [15:0] dout;
 input clk,rb,wb;
-input [14:0]adrb;
-output reg [15:0]dout;
+input [14:0] adrb;
 input [15:0] din;
 reg [7:0] memory[0:16383];
 
