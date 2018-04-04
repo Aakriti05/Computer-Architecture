@@ -1,0 +1,1146 @@
+$date
+	Tue Apr 03 23:32:50 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module tb_FSM $end
+$var wire 1 ! Resetzero $end
+$var wire 1 " RegWrite $end
+$var wire 1 # RegRead $end
+$var wire 1 $ PCWriteCond $end
+$var wire 1 % PCWrite $end
+$var wire 1 & PCSrc $end
+$var wire 1 ' MemtoReg $end
+$var wire 1 ( MemWrite $end
+$var wire 1 ) MemRead $end
+$var wire 1 * IntMemRead $end
+$var wire 1 + IRWrite $end
+$var wire 1 , IRRead $end
+$var wire 1 - FlagSel $end
+$var wire 1 . ExOp $end
+$var wire 3 / ALUop [2:0] $end
+$var wire 2 0 ALUSrc2 [1:0] $end
+$var wire 2 1 ALUSrc1 [1:0] $end
+$var reg 1 2 clk $end
+$var reg 4 3 func [3:0] $end
+$var reg 4 4 op [3:0] $end
+$var reg 1 5 rst $end
+$scope module uut $end
+$var wire 1 2 clk $end
+$var wire 4 6 func [3:0] $end
+$var wire 4 7 op [3:0] $end
+$var wire 1 5 rst $end
+$var reg 2 8 ALUSrc1 [1:0] $end
+$var reg 2 9 ALUSrc2 [1:0] $end
+$var reg 3 : ALUop [2:0] $end
+$var reg 3 ; CurrentState [2:0] $end
+$var reg 1 . ExOp $end
+$var reg 1 - FlagSel $end
+$var reg 1 , IRRead $end
+$var reg 1 + IRWrite $end
+$var reg 1 * IntMemRead $end
+$var reg 1 ) MemRead $end
+$var reg 1 ( MemWrite $end
+$var reg 1 ' MemtoReg $end
+$var reg 3 < NextState [2:0] $end
+$var reg 1 & PCSrc $end
+$var reg 1 % PCWrite $end
+$var reg 1 $ PCWriteCond $end
+$var reg 1 # RegRead $end
+$var reg 1 " RegWrite $end
+$var reg 1 ! Resetzero $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$var wire 1 = zerof $end
+$var wire 16 > out [15:0] $end
+$var reg 16 ? a [15:0] $end
+$var reg 16 @ b [15:0] $end
+$var reg 3 A op [2:0] $end
+$scope module uut $end
+$var wire 16 B a [15:0] $end
+$var wire 16 C b [15:0] $end
+$var wire 3 D op [2:0] $end
+$var reg 16 E out [15:0] $end
+$var reg 16 F temp_a [15:0] $end
+$var reg 1 = zerof $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$var wire 1 G ReadRegSrc3 $end
+$var wire 1 H ReadRegSrc2 $end
+$var wire 1 I ReadRegSrc1 $end
+$var reg 2 J func [1:0] $end
+$var reg 4 K opcode [3:0] $end
+$scope module uut $end
+$var wire 2 L func [1:0] $end
+$var wire 4 M opcode [3:0] $end
+$var reg 1 I ReadRegSrc1 $end
+$var reg 1 H ReadRegSrc2 $end
+$var reg 1 G ReadRegSrc3 $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$var wire 16 N out [15:0] $end
+$var reg 12 O in [11:0] $end
+$scope module uut $end
+$var wire 12 P in [11:0] $end
+$var reg 16 Q out [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$var wire 16 R out [15:0] $end
+$var reg 4 S in [3:0] $end
+$scope module uut $end
+$var wire 4 T in [3:0] $end
+$var reg 16 U out [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$var wire 16 V out [15:0] $end
+$var reg 1 W ExOp $end
+$var reg 8 X in [7:0] $end
+$scope module uut $end
+$var wire 1 W ExOp $end
+$var wire 8 Y in [7:0] $end
+$var reg 16 Z out [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$var wire 16 [ dout [15:0] $end
+$var reg 15 \ adrb [14:0] $end
+$var reg 1 ] clk $end
+$var reg 16 ^ din [15:0] $end
+$var reg 1 _ rb $end
+$var reg 1 ` wb $end
+$scope module uut $end
+$var wire 15 a adrb [14:0] $end
+$var wire 1 ] clk $end
+$var wire 16 b din [15:0] $end
+$var wire 1 _ rb $end
+$var wire 1 ` wb $end
+$var reg 16 c dout [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$var wire 16 d out [15:0] $end
+$var reg 16 e a [15:0] $end
+$var reg 16 f b [15:0] $end
+$var reg 16 g c [15:0] $end
+$var reg 16 h d [15:0] $end
+$var reg 2 i op [1:0] $end
+$scope module uut $end
+$var wire 16 j a [15:0] $end
+$var wire 16 k b [15:0] $end
+$var wire 16 l c [15:0] $end
+$var wire 16 m d [15:0] $end
+$var wire 2 n op [1:0] $end
+$var reg 16 o out [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$var reg 1 p clk $end
+$var reg 1 q rst $end
+$scope module uut $end
+$var wire 1 p clk $end
+$var wire 1 r pc_write $end
+$var wire 1 q rst $end
+$var wire 1 s temp_out $end
+$var wire 1 t zerof $end
+$var wire 16 u writedata [15:0] $end
+$var wire 4 v readregsrc3 [3:0] $end
+$var wire 4 w readregsrc2 [3:0] $end
+$var wire 4 x readregsrc1 [3:0] $end
+$var wire 16 y pcaddout [15:0] $end
+$var wire 16 z pcaddinp [15:0] $end
+$var wire 16 { instr [15:0] $end
+$var wire 1 | flag $end
+$var wire 16 } dout_temp [15:0] $end
+$var wire 16 ~ data_temp [15:0] $end
+$var wire 16 !" data [15:0] $end
+$var wire 16 "" c [15:0] $end
+$var wire 16 #" b [15:0] $end
+$var wire 4 $" append11regadd [3:0] $end
+$var wire 4 %" append10regadd [3:0] $end
+$var wire 16 &" a [15:0] $end
+$var wire 1 '" Resetzero $end
+$var wire 1 (" RegWrite $end
+$var wire 1 )" RegRead $end
+$var wire 1 *" ReadRegSrc3 $end
+$var wire 1 +" ReadRegSrc2 $end
+$var wire 1 ," ReadRegSrc1 $end
+$var wire 1 -" PCWriteCond $end
+$var wire 1 ." PCWrite $end
+$var wire 1 /" PCSrc $end
+$var wire 1 0" MemtoReg $end
+$var wire 1 1" MemWrite $end
+$var wire 1 2" MemRead $end
+$var wire 1 3" IntMemRead $end
+$var wire 1 4" IRWrite $end
+$var wire 1 5" IRRead $end
+$var wire 1 6" FlagSel $end
+$var wire 1 7" ExOp $end
+$var wire 3 8" ALUop [2:0] $end
+$var wire 16 9" ALUSrc2_inp3 [15:0] $end
+$var wire 16 :" ALUSrc2_inp2 [15:0] $end
+$var wire 2 ;" ALUSrc2 [1:0] $end
+$var wire 16 <" ALUSrc1_inp3 [15:0] $end
+$var wire 2 =" ALUSrc1 [1:0] $end
+$var wire 16 >" ALUOut [15:0] $end
+$var wire 16 ?" ALUInp2 [15:0] $end
+$var wire 16 @" ALUInp1 [15:0] $end
+$scope module alu $end
+$var wire 3 A" op [2:0] $end
+$var wire 16 B" b [15:0] $end
+$var wire 16 C" a [15:0] $end
+$var reg 16 D" out [15:0] $end
+$var reg 16 E" temp_a [15:0] $end
+$var reg 1 t zerof $end
+$upscope $end
+$scope module append10 $end
+$var wire 2 F" int_in [1:0] $end
+$var reg 4 G" int_out [3:0] $end
+$upscope $end
+$scope module append11 $end
+$var wire 2 H" int_in [1:0] $end
+$var reg 4 I" int_out [3:0] $end
+$upscope $end
+$scope module controlsignal $end
+$var wire 1 p clk $end
+$var wire 4 J" func [3:0] $end
+$var wire 4 K" op [3:0] $end
+$var wire 1 q rst $end
+$var reg 2 L" ALUSrc1 [1:0] $end
+$var reg 2 M" ALUSrc2 [1:0] $end
+$var reg 3 N" ALUop [2:0] $end
+$var reg 3 O" CurrentState [2:0] $end
+$var reg 1 7" ExOp $end
+$var reg 1 6" FlagSel $end
+$var reg 1 5" IRRead $end
+$var reg 1 4" IRWrite $end
+$var reg 1 3" IntMemRead $end
+$var reg 1 2" MemRead $end
+$var reg 1 1" MemWrite $end
+$var reg 1 0" MemtoReg $end
+$var reg 3 P" NextState [2:0] $end
+$var reg 1 /" PCSrc $end
+$var reg 1 ." PCWrite $end
+$var reg 1 -" PCWriteCond $end
+$var reg 1 )" RegRead $end
+$var reg 1 (" RegWrite $end
+$var reg 1 '" Resetzero $end
+$upscope $end
+$scope module data_mem $end
+$var wire 15 Q" adrb [14:0] $end
+$var wire 1 p clk $end
+$var wire 1 2" rb $end
+$var wire 1 1" wb $end
+$var wire 16 R" din [15:0] $end
+$var reg 16 S" dout [15:0] $end
+$upscope $end
+$scope module ex12to6 $end
+$var wire 12 T" in [11:0] $end
+$var reg 16 U" out [15:0] $end
+$upscope $end
+$scope module ex4to6 $end
+$var wire 4 V" in [3:0] $end
+$var reg 16 W" out [15:0] $end
+$upscope $end
+$scope module ex8to6 $end
+$var wire 1 7" ExOp $end
+$var wire 8 X" in [7:0] $end
+$var reg 16 Y" out [15:0] $end
+$upscope $end
+$scope module instr_mem $end
+$var wire 15 Z" adrb [14:0] $end
+$var wire 1 p clk $end
+$var wire 1 3" rb $end
+$var reg 16 [" dout [15:0] $end
+$upscope $end
+$scope module intreg $end
+$var wire 1 5" IRRead $end
+$var wire 1 4" IRWrite $end
+$var wire 16 \" int_in [15:0] $end
+$var reg 16 ]" hidden [15:0] $end
+$var reg 16 ^" int_out [15:0] $end
+$upscope $end
+$scope module mdr $end
+$var wire 16 _" data_in [15:0] $end
+$var reg 16 `" data_out [15:0] $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$var wire 16 a" a [15:0] $end
+$var wire 16 b" d [15:0] $end
+$var wire 2 c" op [1:0] $end
+$var wire 16 d" c [15:0] $end
+$var wire 16 e" b [15:0] $end
+$var reg 16 f" out [15:0] $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$var wire 16 g" b [15:0] $end
+$var wire 16 h" c [15:0] $end
+$var wire 16 i" d [15:0] $end
+$var wire 2 j" op [1:0] $end
+$var wire 16 k" a [15:0] $end
+$var reg 16 l" out [15:0] $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$var wire 16 m" a [15:0] $end
+$var wire 16 n" b [15:0] $end
+$var wire 1 0" op $end
+$var reg 16 o" out [15:0] $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$var wire 4 p" a [3:0] $end
+$var wire 4 q" b [3:0] $end
+$var wire 1 ," op $end
+$var reg 4 r" out [3:0] $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$var wire 4 s" a [3:0] $end
+$var wire 4 t" b [3:0] $end
+$var wire 1 +" op $end
+$var reg 4 u" out [3:0] $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$var wire 4 v" a [3:0] $end
+$var wire 4 w" b [3:0] $end
+$var wire 1 *" op $end
+$var reg 4 x" out [3:0] $end
+$upscope $end
+$scope module mux_zerof $end
+$var wire 1 t a $end
+$var wire 1 y" b $end
+$var wire 1 6" op $end
+$var reg 1 | out $end
+$upscope $end
+$scope module muxex_sel $end
+$var wire 2 z" func [1:0] $end
+$var wire 4 {" opcode [3:0] $end
+$var reg 1 ," ReadRegSrc1 $end
+$var reg 1 +" ReadRegSrc2 $end
+$var reg 1 *" ReadRegSrc3 $end
+$upscope $end
+$scope module pcmux $end
+$var wire 16 |" a [15:0] $end
+$var wire 1 /" op $end
+$var wire 16 }" b [15:0] $end
+$var reg 16 ~" out [15:0] $end
+$upscope $end
+$scope module pcreg $end
+$var wire 1 r PCWrite $end
+$var wire 1 '" Resetzero $end
+$var wire 15 !# pcaddinp [14:0] $end
+$var reg 15 "# pcaddout [14:0] $end
+$upscope $end
+$scope module regfile $end
+$var wire 1 p clk $end
+$var wire 4 ## readregsrc1 [3:0] $end
+$var wire 4 $# readregsrc2 [3:0] $end
+$var wire 4 %# readregsrc3 [3:0] $end
+$var wire 1 )" regread $end
+$var wire 1 (" regwrite $end
+$var wire 4 &# regwritedst [3:0] $end
+$var wire 16 '# writedata [15:0] $end
+$var reg 16 (# a [15:0] $end
+$var reg 16 )# b [15:0] $end
+$var reg 16 *# c [15:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$var wire 16 +# c [15:0] $end
+$var wire 16 ,# b [15:0] $end
+$var wire 16 -# a [15:0] $end
+$var reg 1 .# clk $end
+$var reg 4 /# readregsrc1 [3:0] $end
+$var reg 4 0# readregsrc2 [3:0] $end
+$var reg 4 1# readregsrc3 [3:0] $end
+$var reg 1 2# regread $end
+$var reg 1 3# regwrite $end
+$var reg 4 4# regwritedst [3:0] $end
+$var reg 16 5# writedata [15:0] $end
+$scope module uut $end
+$var wire 1 .# clk $end
+$var wire 4 6# readregsrc1 [3:0] $end
+$var wire 4 7# readregsrc2 [3:0] $end
+$var wire 4 8# readregsrc3 [3:0] $end
+$var wire 1 2# regread $end
+$var wire 1 3# regwrite $end
+$var wire 4 9# regwritedst [3:0] $end
+$var wire 16 :# writedata [15:0] $end
+$var reg 16 ;# a [15:0] $end
+$var reg 16 <# b [15:0] $end
+$var reg 16 =# c [15:0] $end
+$upscope $end
+$upscope $end
+$scope module tb_FSM $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$scope module uut $end
+$scope module alu $end
+$upscope $end
+$scope module append10 $end
+$upscope $end
+$scope module append11 $end
+$upscope $end
+$scope module controlsignal $end
+$upscope $end
+$scope module data_mem $end
+$upscope $end
+$scope module ex12to6 $end
+$upscope $end
+$scope module ex4to6 $end
+$upscope $end
+$scope module ex8to6 $end
+$upscope $end
+$scope module instr_mem $end
+$upscope $end
+$scope module intreg $end
+$upscope $end
+$scope module mdr $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$upscope $end
+$scope module mux_zerof $end
+$upscope $end
+$scope module muxex_sel $end
+$upscope $end
+$scope module pcmux $end
+$upscope $end
+$scope module pcreg $end
+$upscope $end
+$scope module regfile $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_FSM $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$scope module uut $end
+$scope module alu $end
+$upscope $end
+$scope module append10 $end
+$upscope $end
+$scope module append11 $end
+$upscope $end
+$scope module controlsignal $end
+$upscope $end
+$scope module data_mem $end
+$upscope $end
+$scope module ex12to6 $end
+$upscope $end
+$scope module ex4to6 $end
+$upscope $end
+$scope module ex8to6 $end
+$upscope $end
+$scope module instr_mem $end
+$upscope $end
+$scope module intreg $end
+$upscope $end
+$scope module mdr $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$upscope $end
+$scope module mux_zerof $end
+$upscope $end
+$scope module muxex_sel $end
+$upscope $end
+$scope module pcmux $end
+$upscope $end
+$scope module pcreg $end
+$upscope $end
+$scope module regfile $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_FSM $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$scope module uut $end
+$scope module alu $end
+$upscope $end
+$scope module append10 $end
+$upscope $end
+$scope module append11 $end
+$upscope $end
+$scope module controlsignal $end
+$upscope $end
+$scope module data_mem $end
+$upscope $end
+$scope module ex12to6 $end
+$upscope $end
+$scope module ex4to6 $end
+$upscope $end
+$scope module ex8to6 $end
+$upscope $end
+$scope module instr_mem $end
+$upscope $end
+$scope module intreg $end
+$upscope $end
+$scope module mdr $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$upscope $end
+$scope module mux_zerof $end
+$upscope $end
+$scope module muxex_sel $end
+$upscope $end
+$scope module pcmux $end
+$upscope $end
+$scope module pcreg $end
+$upscope $end
+$scope module regfile $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_FSM $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$scope module uut $end
+$scope module alu $end
+$upscope $end
+$scope module append10 $end
+$upscope $end
+$scope module append11 $end
+$upscope $end
+$scope module controlsignal $end
+$upscope $end
+$scope module data_mem $end
+$upscope $end
+$scope module ex12to6 $end
+$upscope $end
+$scope module ex4to6 $end
+$upscope $end
+$scope module ex8to6 $end
+$upscope $end
+$scope module instr_mem $end
+$upscope $end
+$scope module intreg $end
+$upscope $end
+$scope module mdr $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$upscope $end
+$scope module mux_zerof $end
+$upscope $end
+$scope module muxex_sel $end
+$upscope $end
+$scope module pcmux $end
+$upscope $end
+$scope module pcreg $end
+$upscope $end
+$scope module regfile $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_FSM $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_alu_16bit $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_append $end
+$upscope $end
+$scope module tb_comb_reg_sel $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_12_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_4_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_extend_8_to_16 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_intreg $end
+$upscope $end
+$scope module tb_mdr $end
+$upscope $end
+$scope module tb_memory $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_mux_2to1 $end
+$upscope $end
+$scope module tb_mux_4to1 $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$scope module tb_pcreg $end
+$upscope $end
+$scope module tb_test_int $end
+$scope module uut $end
+$scope module alu $end
+$upscope $end
+$scope module append10 $end
+$upscope $end
+$scope module append11 $end
+$upscope $end
+$scope module controlsignal $end
+$upscope $end
+$scope module data_mem $end
+$upscope $end
+$scope module ex12to6 $end
+$upscope $end
+$scope module ex4to6 $end
+$upscope $end
+$scope module ex8to6 $end
+$upscope $end
+$scope module instr_mem $end
+$upscope $end
+$scope module intreg $end
+$upscope $end
+$scope module mdr $end
+$upscope $end
+$scope module mux_ALUSrc1 $end
+$upscope $end
+$scope module mux_ALUSrc2 $end
+$upscope $end
+$scope module mux_MemtoReg $end
+$upscope $end
+$scope module mux_RegSrc1 $end
+$upscope $end
+$scope module mux_RegSrc2 $end
+$upscope $end
+$scope module mux_RegSrc3 $end
+$upscope $end
+$scope module mux_zerof $end
+$upscope $end
+$scope module muxex_sel $end
+$upscope $end
+$scope module pcmux $end
+$upscope $end
+$scope module pcreg $end
+$upscope $end
+$scope module regfile $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tst_regfile $end
+$scope module uut $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx =#
+bx <#
+bx ;#
+bx :#
+bx 9#
+b10 8#
+b1 7#
+b0 6#
+bx 5#
+bx 4#
+03#
+12#
+b10 1#
+b1 0#
+b0 /#
+1.#
+bx -#
+bx ,#
+bx +#
+bx *#
+bx )#
+bx (#
+bx '#
+bx &#
+bx %#
+bx $#
+bx ##
+bx "#
+bx !#
+bx ~"
+bx }"
+bx |"
+bx {"
+bx z"
+zy"
+bx x"
+bx w"
+bx v"
+bx u"
+bx t"
+bx s"
+bx r"
+bx q"
+bx p"
+bx o"
+bx n"
+bx m"
+bx l"
+bx k"
+bx j"
+bx i"
+bx h"
+b10 g"
+bx f"
+bx e"
+bx d"
+bx c"
+bx b"
+bzxxxxxxxxxxxxxxx a"
+bx `"
+bx _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+bx W"
+bx V"
+bx U"
+bx T"
+bx S"
+bx R"
+bx Q"
+bx P"
+bx O"
+bx N"
+bx M"
+bx L"
+bx K"
+bx J"
+bx I"
+bx H"
+bx G"
+bx F"
+bx E"
+bx D"
+bx C"
+bx B"
+bx A"
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+x7"
+x6"
+x5"
+x4"
+x3"
+x2"
+x1"
+x0"
+x/"
+x."
+x-"
+x,"
+x+"
+x*"
+x)"
+x("
+x'"
+bx &"
+bx %"
+bx $"
+bx #"
+bx ""
+bx !"
+bx ~
+bx }
+x|
+bx {
+bx z
+bzxxxxxxxxxxxxxxx y
+bx x
+bx w
+bx v
+bx u
+xt
+xs
+xr
+1q
+0p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+b0 a
+0`
+1_
+bx ^
+0]
+b0 \
+bx [
+b10 Z
+b10 Y
+b10 X
+0W
+b10 V
+b1001 U
+b1001 T
+b1001 S
+b1001 R
+b10 Q
+b10 P
+b10 O
+b10 N
+bx M
+bx L
+bx K
+bx J
+xI
+xH
+xG
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+x=
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+15
+bx 4
+bx 3
+02
+bx 1
+bx 0
+bx /
+x.
+x-
+x,
+x+
+x*
+x)
+x(
+x'
+x&
+x%
+x$
+x#
+x"
+x!
+$end
+#500
+b1001010001101101 [
+b1001010001101101 c
+1p
+1]
+0q
+#1000
+0p
+0]
+#1500
+1p
+1]
+#2000
+0p
+0]
+b11110010 V
+b11110010 Z
+b10 R
+b10 U
+b1111100111110010 N
+b1111100111110010 Q
+b111 d
+b111 o
+0G
+0H
+0=
+b100 >
+b100 E
+b10 \
+b10 a
+b11110010 X
+b11110010 Y
+b10 S
+b10 T
+b100111110010 O
+b100111110010 P
+b1111000101101101 h
+b1111000101101101 m
+b111000 g
+b111000 l
+b1111111111111101 f
+b1111111111111101 k
+b111 e
+b111 j
+b0 i
+b0 n
+b1000 K
+b1000 M
+b1111111111111101 @
+b1111111111111101 C
+b111 ?
+b111 B
+b0 A
+b0 D
+#2500
+b10110100101100 [
+b10110100101100 c
+1p
+1]
+#3000
+0p
+0]
+#3500
+1p
+1]

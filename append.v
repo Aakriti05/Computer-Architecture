@@ -4,9 +4,7 @@
 module tb_append();
 
 endmodule
- 
 
- 
 module append10(int_out,int_in);
 //declare inputs and outputs
 output reg [3:0] int_out;

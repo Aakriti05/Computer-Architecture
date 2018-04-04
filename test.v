@@ -18,12 +18,42 @@
 //test bench module
 module tb_test_int();
 
+reg clk,rst;
+
+test uut(clk,rst);
+reg dout_temp;
+initial 
+begin 
+		#00 clk <= 1'b0 ; 
+forever #05 clk <= ~clk ; 
+end
+
+initial 
+begin
+	#00 rst = 1'b1;
+	#05 rst = 1'b0;
+	#100 $finish;
+end
+
+initial 
+begin 
+	$monitor("time=%3d, out=%15h",$time,dout_temp);
+end
+
+
+initial
+begin
+$dumpfile("test.vcd");
+$dumpvars;
+end
+
 endmodule
  
 
 //top module for integration 
-module test_int();
+module test(clk,rst);
 //declare inputs and outputs
+input clk,rst;
 
 //declare required wires
 wire [15:0] pcaddout;
@@ -42,8 +72,8 @@ wire [2:0] ALUop;
 wire [15:0] ALUOut,data,data_temp;
 
 //instantiate modules
-FSM controlsignal(ALUSrc1, ALUSrc2, ALUop, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, Muxgrp, MemtoReg, RegWrite, MemRead, MemWrite, clk, rst, instr[15:12], instr[3:0]);
-pcreg pcreg(pcaddout[14:0],pcaddinp[14:0],PCWrite);
+FSM controlsignal(ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite, clk, rst, instr[15:12], instr[3:0]);
+pcreg pcreg(pcaddout[14:0],pcaddinp[14:0],pc_write, Resetzero);
 comb_log_reg_sel muxex_sel(ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, instr[15:12], instr[1:0]);
 
 //memory (instr and data)
@@ -54,7 +84,7 @@ mdr mdr(data,data_temp);
 
 //extend to 16
 extend_4_to_16 ex4to6(ALUSrc1_inp3,instr[7:4]);
-extend_8_to_16 ex8to6(ALUSrc2_inp2,instr[7:0],ExOp); //ExOp not defined yet
+extend_8_to_16 ex8to6(ALUSrc2_inp2,instr[7:0],ExOp);
 extend_12_to_16 ex12to6(ALUSrc2_inp3,instr[11:0]);
 
 //reg append
@@ -78,7 +108,11 @@ mux_4to1 mux_ALUSrc2(ALUInp2,b,16'h0002,ALUSrc2_inp2,ALUSrc2_inp3,ALUSrc2);
 alu_16bit alu(zerof,ALUOut,ALUInp1,ALUInp2,ALUop);
 
 //zerof mux
-mux_2to1_zerof mux_zerof(PCWriteCond,zerof,FlagSel);
+mux_2to1_zerof mux_zerof(flag,zerof,FlagSel);
+
+//conditional for pcwrite
+and a1(temp_out,flag,PCWriteCond);
+or a2(pc_write,PCWrite,temp_out);
 
 //pc mux
 mux_2to1_16bit pcmux(pcaddinp,ALUOut,c,PCSrc);
