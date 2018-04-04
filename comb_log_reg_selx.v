@@ -3,40 +3,6 @@
 
 module tb_comb_reg_sel();
 
-wire ReadRegSrc1, ReadRegSrc2, ReadRegSrc3;
-reg [3:0] opcode;
-reg [1:0] func;
-
-//declare i/p and o/p
-comb_log_reg_sel uut (ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, opcode, func);
-
-initial
-begin
-//test values
-#20  opcode = 4'b1000;
-#20  opcode = 4'b1001;
-#20  opcode = 4'b1010;
-#20  opcode = 4'b1100;
-#20  opcode = 4'b1101;
-#20  opcode = 4'b1110;
-#20  opcode = 4'b0000;
-#20  opcode = 4'b1011;
-#20  opcode = 4'b0111;
-#20  opcode = 4'b1111;
-#20  opcode = 4'b0110;
-#20  opcode = 4'b0101;
-#20  opcode = 4'b0011;
-#20  opcode = 4'b0001;
-#20  opcode = 4'b0010;
-
-#20  $finish;
-end
-	
-initial
-	begin
-	$monitor("time=%3d, op=%4b, a=%1b, b=%1b, c=%1b",$time,opcode,ReadRegSrc1,ReadRegSrc2,ReadRegSrc3);
-	end
-
 endmodule
  
 module comb_log_reg_sel(ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, opcode, func);
