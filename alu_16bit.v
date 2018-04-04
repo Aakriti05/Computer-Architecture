@@ -11,6 +11,24 @@
 
 module tb_alu_16bit();
 
+wire [15:0] out;
+wire zerof;
+reg [15:0] a,b;
+reg [2:0] op;
+alu_16bit uut(zerof,out,a,b,op);
+
+initial
+begin
+#20  op=3'b000; a=16'd7; b=16'hFFFD;
+#20  op=3'b100; a=16'b0000000000001000; b=16'd4;
+#20  $finish;
+end
+	
+initial
+begin
+$dumpfile("alu_16bit.vcd");
+$dumpvars;
+end
 endmodule
  
 module alu_16bit(zerof,out,a,b,op);

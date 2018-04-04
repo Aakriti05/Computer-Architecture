@@ -14,7 +14,7 @@ input [14:0]adrb;
 output reg [15:0]dout;
 reg [7:0] memory[0:16383];
 
-initial $readmemh("instr_64.txt",memory);
+//initial $readmemh("data_64.txt",memory);
 
 always@(posedge clk)
 	begin
@@ -31,7 +31,7 @@ input [14:0] adrb;
 input [15:0] din;
 reg [7:0] memory[0:16383];
 
-initial $readmemh("data_64.txt",memory);
+//initial $readmemh("data_64.txt",memory);
 
 always@(posedge clk)
 	begin

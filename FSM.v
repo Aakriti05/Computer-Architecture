@@ -1,32 +1,50 @@
 `timescale 1ns/10ps 
 module tb_FSM();
- 
+
+reg [3:0]op, func;
+reg clk, rst;
+wire IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, Muxgrp, MemtoReg, RegWrite, MemRead, MemWite;
+wire [1:0]ALUSrc1, ALUSrc2, ALUop;
+
+FSM uut (ALUSrc1, ALUSrc2, ALUop, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, Muxgrp, MemtoReg, RegWrite, MemRead, MemWrite, clk, rst, op, func);
+
+initial 
+begin 
+$dumpfile("FSM.vcd"); 
+$dumpvars; 
+end
+
+initial 
+begin 
+#00 clk <= 1'b0 ; 
+forever #50 clk <= ~ clk ; 
+end
+
+initial 
+begin 
+#0000 rst = 1'b1; #0050 rst = 1'b0; #0010 op = 4'b1000; #0000 func = 4'b0000;
+end 
 endmodule
 
-module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite, clk, rst, op, func);
+module FSM (ALUSrc1, ALUSrc2, ALUop, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, Muxgrp, MemtoReg, RegWrite, MemRead, MemWrite, clk, rst, op, func);
 
 	input [3:0]op, func;
 	input clk, rst;
-	output reg Resetzero, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite;
-	output reg [1:0]ALUSrc1, ALUSrc2;
-	output reg [2:0]ALUop;
+	output reg IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, Muxgrp, MemtoReg, RegWrite, MemRead, MemWrite;
+	output reg [1:0]ALUSrc1, ALUSrc2, ALUop;
 
-	parameter IF = 5'b00000, ID = 5'b00001, EX_add_reg = 5'b00010, EX_add_sign_imm = 5'b00011, EX_add_zero_imm = 5'b00100, EX_sub_reg = 5'b00101, 
-		EX_sub_sign_imm = 5'b00110, EX_sub_zero_imm = 5'b00111, EX_left_lo = 5'b01000, EX_right_lo = 5'b01001, EX_right_ar = 5'b01010, 
-		EX_nand_reg = 5'b01011, EX_or_reg = 5'b01100, EX_nand_imm = 5'b01101, EX_or_imm = 5'b01110, 
-		EX_bch_eq = 5'b01111, EX_bch_noteq = 5'b10000, EX_jmp = 5'b10001, EX_load_store = 5'b10010, 
-		MEM_load = 5'b10011, MEM_store = 5'b10100, WB_load = 5'b10101; 
+	parameter IF = 5'b00000, ID = 5'b00001, EX_add_reg = 5'b00010, EX_add_imm = 5'b00011, EX_sub_reg = 5'b00100, 
+		EX_sub_imm = 5'b00101, EX_left_lo = 5'b00110, EX_right_lo = 5'b00111, EX_right_ar = 5'b01000, 
+		EX_nand_reg = 5'b01001, EX_or_reg = 5'b01010, EX_nand_imm = 5'b01011, EX_or_imm = 5'b01100, 
+		EX_bch_eq = 5'b01101, EX_bch_noteq = 5'b01110, EX_jmp = 5'b01111, EX_load_store = 5'b10000, 
+		MEM_load = 5'b10001, MEM_store = 5'b10010, WB_load = 5'b10011; 
 	reg [2:0]NextState, CurrentState;
 
 	// To update the state	
 	always @(posedge clk)
 	begin 
-		if(rst)
-		begin
-		CurrentState <= IF; 
-		Resetzero <= 1'b1;
-		end
-		else    CurrentState <= NextState;
+		if(rst) CurrentState <= IF ; 
+		else    CurrentState <= NextState ;
 	end
 
 	//To calculate the next state
@@ -37,12 +55,10 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 		NextState <= ID;
 		end
 	ID   :begin 
-		if(op == 4'b1000) NextState <= EX_add_reg; 
-		else if(op == 4'b1001) NextState <= EX_add_sign_imm;
-		else if(op == 4'b1010) NextState <= EX_add_zero_imm;
+		if(op == 4'b1000) NextState <= EX_add_reg ; 
+		else if(op == 4'b1001 || op == 4'b1010) NextState <= EX_add_imm;
 		else if(op == 4'b1100) NextState <= EX_sub_reg;
-		else if(op == 4'b1101) NextState <= EX_sub_sign_imm;
-		else if(op == 4'b1110) NextState <= EX_sub_zero_imm;
+		else if(op == 4'b1101 || op == 4'b1110) NextState <= EX_sub_imm;
 		else if(op == 4'b0000) 
 		begin
 			if(func == 4'b0001) NextState <= EX_left_lo;
@@ -65,11 +81,7 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 		    NextState <= IF; 
 		    end
 
-	EX_add_sign_imm :begin 
-		    NextState <= IF; 
-		    end
-
-	EX_add_zero_imm :begin 
+	EX_add_imm   :begin 
 		    NextState <= IF; 
 		    end
 
@@ -77,11 +89,7 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 		    NextState <= IF; 
 		    end
 
-	EX_sub_sign_imm :begin 
-		    NextState <= IF; 
-		    end
-
-	EX_sub_zero_imm :begin 
+	EX_sub_imm   :begin 
 		    NextState <= IF; 
 		    end
 
@@ -152,28 +160,22 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 	begin 
 		case(CurrentState)
 		IF            : begin
-				IntMemRead <= 1'b1; PCWrite <= 1'b1; IRWrite <= 1'b1; PCSrc <= 1'b0; ALUSrc1 <= 2'b00; ALUSrc2 <= 2'b01; ALUop <= 3'b000; MemWrite <= 1'b0;
+				IntMemRead <= 1'b1; PCWrite <= 1'b1; IRWrite <= 1'b1; PCSrc <= 1'b0; ALUSrc1 <= 2'b00; ALUSrc2 <= 2'b01; ALUop <= 3'b000;
 				end
 		ID            : begin
-				IRRead <= 1'b1; RegRead <= 1'b1; IRWrite <= 1'b0; IntMemRead <= 1'b0; RegWrite <= 1'b0;
+				IRRead <= 1'b1; RegRead <= 1'b1; Muxgrp <= 1'b1;
 				end
 		EX_add_reg    : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b000;
 				end
-		EX_add_sign_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b0;
-				end
-		EX_sub_zero_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b1;
+		EX_add_imm    : begin
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000;
 				end
 		EX_sub_reg    : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b001;
 				end
-		EX_sub_sign_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001; ExOp <= 1'b0;
-				end
-		EX_sub_zero_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001; ExOp <= 1'b1;
+		EX_sub_imm    : begin
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001;
 				end
 		EX_left_lo    : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b00; ALUop <= 3'b010;
@@ -210,14 +212,12 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 				end
 		MEM_load      : begin
 				MemRead <= 1'b1;
-				MemWrite <= 1'b0;
 				end
 		MEM_store     : begin
 				MemWrite <= 1'b1;
-				MemRead <= 1'b0;
 				end
 		WB_load       : begin
-				MemtoReg <= 1'b0; RegWrite <= 1'b1; MemRead <= 1'b0;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1;
 				end
 		endcase
 	end

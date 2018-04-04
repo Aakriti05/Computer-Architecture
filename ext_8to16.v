@@ -2,6 +2,26 @@
 
 module tb_extend_8_to_16();
 
+	wire [15:0] out;
+	reg [7:0] in;
+	reg ExOp;
+	
+	extend_8_to_16 uut(out, in, ExOp);
+	
+	initial
+	begin
+		#00 ExOp=1'b0 ; in=8'h02; 
+		#20 ExOp=1'b0 ; in=8'hf2; 
+		#20 ExOp=1'b1 ; in=8'h02; 
+		#20 ExOp=1'b1 ; in=8'hf2; 
+		#20 $stop;
+	end 
+	
+	initial
+	begin
+	$monitor("time=%3d, in=%8b, out=%16b, ExOp=%b ",$time,in,out,ExOp);
+	end
+	
 endmodule
 
 
