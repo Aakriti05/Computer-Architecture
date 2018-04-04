@@ -16,7 +16,7 @@ reg [7:0] memory[0:16383];
 
 initial $readmemh("instr_64.txt",memory);
 
-always@(posedge clk)
+always@(negedge clk)
 	begin
 		if(rb) dout <= {memory[adrb],memory[adrb+15'b1]};
 		else; 
@@ -33,13 +33,14 @@ reg [7:0] memory[0:16383];
 
 initial $readmemh("data_64.txt",memory);
 
-always@(posedge clk)
+always@(negedge clk)
 	begin
-		if(rb) dout <= {memory[adrb+15'b1],memory[adrb]};
-		else if(wb) begin 
-						memory[adrb] <= din[7:0];
-						memory[adrb+15'b01] <= din[15:8];
+		if(rb) dout <= {memory[adrb],memory[adrb+15'b1]};
+		if(wb) begin 
+						memory[adrb] <= din[15:8];
+						memory[adrb+15'b01] <= din[7:0];
 					end 
-		else;		
+		else;
+		$writememh("data_64_2.txt",memory);		
 	end
 endmodule

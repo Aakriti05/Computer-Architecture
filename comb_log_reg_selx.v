@@ -5,10 +5,10 @@ module tb_comb_reg_sel();
 
 endmodule
  
-module comb_log_reg_sel(ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, opcode, func);
+module comb_log_reg_sel(ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, ReadRegSrc4, opcode, func);
 	
 //declare i/p and o/p
-output reg ReadRegSrc1, ReadRegSrc2, ReadRegSrc3;
+output reg ReadRegSrc1, ReadRegSrc2, ReadRegSrc3, ReadRegSrc4;
 input [3:0] opcode;
 input [1:0] func;
 
@@ -42,86 +42,103 @@ begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		addseimd :  begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		addzeimd :  begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		subreg	 :  begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		subseimd :  begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		subzeimd : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		shift	 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b1;
 					end
 		lnand	 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		lnandimd : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		lor		 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		lorimd	 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		brncheq	 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		brnchneq : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 		jmp		 : begin
 						ReadRegSrc1 = 1'bx;		//technically dont care
 						ReadRegSrc2 = 1'bx;		//technically dont care
 						ReadRegSrc3 = 1'bx;		//technically dont care
+						ReadRegSrc4 = 1'b0;
 					end
 		lwd		 : begin
 						ReadRegSrc1 = 1'b1;		
 						ReadRegSrc2 = 1'b1;
 						ReadRegSrc3 = 1'b1;
+						ReadRegSrc4 = 1'b0;
 					end
 		strwd 	 : begin
 						ReadRegSrc1 = 1'b1;		
 						ReadRegSrc2 = 1'b1;
 						ReadRegSrc3 = 1'b1;
+						ReadRegSrc4 = 1'b0;
 					end
 		default  : begin
 						ReadRegSrc1 = 1'b0;
 						ReadRegSrc2 = 1'b0;
 						ReadRegSrc3 = 1'b0;
+						ReadRegSrc4 = 1'b0;
 					end
 	endcase 
 end

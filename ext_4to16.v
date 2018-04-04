@@ -16,4 +16,16 @@ module extend_4_to_16(out, in);
 	end
 	
 endmodule 
+
+module extend_15_to_16(out, in);
+
+	output reg [15:0] out;
+	input  [14:0] in;
+
+	always@(in)
+	begin
+	out = {1'b0,in};
+	end
+	
+endmodule
 	

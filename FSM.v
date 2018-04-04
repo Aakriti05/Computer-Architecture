@@ -1,13 +1,37 @@
 `timescale 1ns/10ps 
 module tb_FSM();
- 
+
+// reg [3:0]op, func;
+// reg clk, rst;
+// wire IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite;
+// wire [1:0]ALUSrc1, ALUSrc2;
+// wire [2:0] ALUop;
+
+// FSM uut (ALUSrc1, ALUSrc2, ALUop, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite, clk, rst, op, func);
+
+// initial 
+// begin 
+// $dumpfile("FSM.vcd"); 
+// $dumpvars; 
+// end
+
+// initial 
+// begin 
+// #00 clk <= 1'b0 ; 
+// forever #50 clk <= ~ clk ; 
+// end
+
+// initial 
+// begin 
+// #0000 rst = 1'b1; #0050 rst = 1'b0; #0010 op = 4'b1000; #0000 func = 4'b0000;
+// end 
 endmodule
 
-module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite, clk, rst, op, func);
+module FSM (ALUSrc1, ALUSrc2, ALUop, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite, clk, rst, op, func);
 
 	input [3:0]op, func;
 	input clk, rst;
-	output reg Resetzero, IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite;
+	output reg IntMemRead, PCWrite, PCWriteCond, FlagSel, IRWrite, PCSrc, IRRead, RegRead, MemtoReg, ExOp, RegWrite, MemRead, MemWrite;
 	output reg [1:0]ALUSrc1, ALUSrc2;
 	output reg [2:0]ALUop;
 
@@ -16,16 +40,12 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 		EX_nand_reg = 5'b01011, EX_or_reg = 5'b01100, EX_nand_imm = 5'b01101, EX_or_imm = 5'b01110, 
 		EX_bch_eq = 5'b01111, EX_bch_noteq = 5'b10000, EX_jmp = 5'b10001, EX_load_store = 5'b10010, 
 		MEM_load = 5'b10011, MEM_store = 5'b10100, WB_load = 5'b10101; 
-	reg [2:0]NextState, CurrentState;
+	reg [4:0]NextState, CurrentState;
 
 	// To update the state	
 	always @(posedge clk)
 	begin 
-		if(rst)
-		begin
-		CurrentState <= IF; 
-		Resetzero <= 1'b1;
-		end
+		if(rst) CurrentState <= IF; 
 		else    CurrentState <= NextState;
 	end
 
@@ -152,46 +172,46 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 	begin 
 		case(CurrentState)
 		IF            : begin
-				IntMemRead <= 1'b1; PCWrite <= 1'b1; IRWrite <= 1'b1; PCSrc <= 1'b0; ALUSrc1 <= 2'b00; ALUSrc2 <= 2'b01; ALUop <= 3'b000; MemWrite <= 1'b0;
+				IntMemRead <= 1'b1; PCWrite <= 1'b1; PCWriteCond <= 1'b0; IRWrite <= 1'b1; PCSrc <= 1'b0; ALUSrc1 <= 2'b00; ALUSrc2 <= 2'b01; ALUop <= 3'b000; MemWrite <= 1'b0; FlagSel = 1'b0;
 				end
 		ID            : begin
-				IRRead <= 1'b1; RegRead <= 1'b1; IRWrite <= 1'b0; IntMemRead <= 1'b0; RegWrite <= 1'b0;
+				IRRead <= 1'b1; RegRead <= 1'b1; IRWrite <= 1'b0; IntMemRead <= 1'b0; RegWrite <= 1'b0; PCWrite <= 1'b0;
 				end
 		EX_add_reg    : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b000;
 				end
 		EX_add_sign_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b0;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b1;
 				end
 		EX_sub_zero_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b1;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b000; ExOp <= 1'b0;
 				end
 		EX_sub_reg    : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b001;
 				end
 		EX_sub_sign_imm : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001; ExOp <= 1'b0;
-				end
-		EX_sub_zero_imm : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001; ExOp <= 1'b1;
 				end
+		EX_sub_zero_imm : begin
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b001; ExOp <= 1'b0;
+				end
 		EX_left_lo    : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b00; ALUop <= 3'b010;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b11; ALUSrc2 <= 2'b00; ALUop <= 3'b010;
 				end
 		EX_right_lo   : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b00; ALUop <= 3'b011;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b11; ALUSrc2 <= 2'b00; ALUop <= 3'b011;
 				end
 		EX_right_ar   : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b00; ALUop <= 3'b100;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b11; ALUSrc2 <= 2'b00; ALUop <= 3'b100;
 				end
 		EX_nand_reg   : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b101;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b111;
 				end
 		EX_or_reg     : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b00; ALUop <= 3'b110;
 				end
 		EX_nand_imm   : begin
-				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b101;
+				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b111;
 				end
 		EX_or_imm     : begin
 				MemtoReg <= 1'b1; RegWrite <= 1'b1; ALUSrc1 <= 2'b10; ALUSrc2 <= 2'b10; ALUop <= 3'b110;
@@ -206,7 +226,7 @@ module FSM (ALUSrc1, ALUSrc2, ALUop, Resetzero, IntMemRead, PCWrite, PCWriteCond
 				PCSrc <= 1'b0; PCWrite <= 1'b1; ALUSrc1 <= 2'b00; ALUSrc2 <= 2'b11; ALUop <= 3'b000;
 				end
 		EX_load_store : begin
-				ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b10; ALUop <= 3'b101;
+				ALUSrc1 <= 2'b01; ALUSrc2 <= 2'b10; ALUop <= 3'b101; ExOp <= 1'b1; 
 				end
 		MEM_load      : begin
 				MemRead <= 1'b1;

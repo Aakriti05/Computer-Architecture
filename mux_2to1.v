@@ -9,7 +9,7 @@ module mux_2to1(out,a,b,op);
 output reg [3:0] out;
 input [3:0] a,b;
 input op;
-always @(op)
+always @(*)
 begin
 	case(op)
 		1'b0: out = a;
@@ -24,7 +24,7 @@ module mux_2to1_16bit(out,a,b,op);
 output reg [15:0] out;
 input [15:0] a,b;
 input op;
-always @(op)
+always @(*)
 begin
 	case(op)
 		1'b0: out = a;
@@ -37,9 +37,9 @@ endmodule
 module mux_2to1_zerof(out,a,op);
 	
 output reg out;
-input a,b;
+input a;
 input op;
-always @(op)
+always @(*)
 begin
 	case(op)
 		1'b0: out = a;

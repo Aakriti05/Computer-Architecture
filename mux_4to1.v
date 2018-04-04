@@ -9,7 +9,7 @@ module mux_4to1(out,a,b,c,d,op);
 output reg [15:0] out;
 input [15:0] a,b,c,d;
 input [1:0] op;
-always @(op)
+always @(*)
 begin
 	case(op)
 		2'b00: out = a;

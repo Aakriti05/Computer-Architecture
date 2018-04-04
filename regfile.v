@@ -21,7 +21,7 @@ always@(negedge clk)
 				b <= regfile[readregsrc2];
 				c <= regfile[readregsrc3];
 			end
-		else if(regwrite) regfile[regwritedst] <= writedata;
-		else;
+		if(regwrite) regfile[regwritedst] <= writedata;
+	$writememh("regfiledata_2.txt",regfile);
 	end
 endmodule 

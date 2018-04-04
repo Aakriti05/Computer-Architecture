@@ -13,28 +13,29 @@ module tb_alu_16bit();
 
 endmodule
  
-module alu_16bit(zerof,out,a,b,op);
+module alu_16bit(zerof,out,a,b,op, clk);
 	
 output reg [15:0] out;
+input clk;
 input [15:0] a,b;
 input [2:0] op;
 output reg zerof;
 reg signed [15:0] temp_a;
 // reg one = 15'h1111;
-always @(a,b)
+always @(negedge clk)
 begin
 	case(op)
 		3'b000: out = a+b;
 		3'b001: out = a-b;
-		3'b101: out = ~(a&b);
+		3'b111: out = ~(a&b);
 		3'b110: out = a|b;
-		3'b010: out = a << b;
-		3'b011: out = a >> b;
+		3'b010: out = b << a;
+		3'b011: out = b >> a;
 		3'b100: begin
 				temp_a = a;
 				out =  temp_a >>> b; // shift right arithmetic; works if the numbers are signed
 				end
-		3'b111: out = {b[14:0],1'b0} + a; //shift addition
+		3'b101: out = {b[14:0],1'b0} + a; //shift addition
 		default: out = 16'b0;
 	endcase
 	if(out == 16'b0)
